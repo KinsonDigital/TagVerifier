@@ -18,7 +18,7 @@ export class Application {
 
 		try {
 			const tagName: string = environment.getVarValue("tag-name");
-			const tagExists: boolean = await tagAPI.tagExistsAsync("v1.0.0-preview.5");
+			const tagExists: boolean = await tagAPI.tagExistsAsync(tagName);
 
 			if (tagExists) {
 				actionInput.info(`The tag '${tagName}' exists.`);

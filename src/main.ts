@@ -1,5 +1,4 @@
 import {Action} from "./helpers/action";
-import { Environment } from "./helpers/environment";
 import {TagAPI} from "./tagAPI";
 
 
@@ -12,21 +11,20 @@ export class Application {
 	 * @returns {Promise<void>} Returns just a promise with now result.
 	 */
 	public async main (): Promise<void> {
-		const environment: Environment = new Environment();
-		const actionInput: Action = new Action();
+		const action: Action = new Action();
 		const tagAPI: TagAPI = new TagAPI();
 
 		try {
-			const tagName: string = environment.getVarValue("tag-name");
+			const tagName: string = action.getInput("tag-name");
 			const tagExists: boolean = await tagAPI.tagExistsAsync(tagName);
 
 			if (tagExists) {
-				actionInput.info(`The tag '${tagName}' exists.`);
+				action.info(`The tag '${tagName}' exists.`);
 			} else {
-				actionInput.info(`The tag '${tagName}' does not exist.`);
+				action.info(`The tag '${tagName}' does not exist.`);
 			}
 
-			actionInput.setOutput("tag-exists", tagExists ? "true" : "false");
+			action.setOutput("tag-exists", tagExists ? "true" : "false");
 
 			return await Promise.resolve();
 		} catch (error) {

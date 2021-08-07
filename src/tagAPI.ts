@@ -1,17 +1,17 @@
 import {info} from "@actions/core";
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
-import {Environment} from "./helpers/environment";
+import {Action} from "./helpers/action";
 import {TagData} from "./interfaces/tagData";
 
 export class TagAPI {
-	private environment: Environment;
+	private action: Action;
 
 	/**
 	 * Creates a new instance of Environment.
 	 * @param environment {Environment} The current environment.
 	 */
 	constructor () {
-		this.environment = new Environment();
+		this.action = new Action();
 	}
 
 	/**
@@ -20,8 +20,8 @@ export class TagAPI {
 	 * @returns True if the tag exists.
 	 */
 	public async tagExistsAsync (name: string): Promise<boolean> {
-		const repoOwnerAndName: string = this.environment.getVarValue("repo-owner-and-name");
-		const repoToken: string = this.environment.getVarValue("repo-token");
+		const repoOwnerAndName: string = this.action.getInput("repo-owner-and-name");
+		const repoToken: string = this.action.getInput("repo-token");
 
 		const config: AxiosRequestConfig = {
 			baseURL: "https://api.github.com",

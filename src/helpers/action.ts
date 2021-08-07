@@ -1,6 +1,6 @@
 import {getInput, setOutput, info, warning, setFailed, InputOptions} from "@actions/core";
-import { context } from "@actions/github";
 import {Environment as Environment} from "./environment";
+
 
 /**
  * Represents different action functionality.
@@ -16,9 +16,6 @@ export class Action {
      */
 	constructor () {
     	this.environment = new Environment();
-		
-
-
 	}
 
 	/**
@@ -28,6 +25,7 @@ export class Action {
      */
 	public getInput (name: string): string {
     	if (this.environment.isDevelop()) {
+			// Development version pulls from the 'env.json' file for testing
 			let isRequired: boolean = true;
 
 			if (name === "contains") {
@@ -36,6 +34,7 @@ export class Action {
 
 			return this.environment.getVarValue(name, isRequired);
 		} else if (this.environment.isProd()) {
+			// Production version pulls the inputs from the YAML file
 			let options: InputOptions = {
 				required: true,
 			};

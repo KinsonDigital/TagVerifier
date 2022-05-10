@@ -28,7 +28,7 @@ export class TagAPI {
 		const config: AxiosRequestConfig = {
 			baseURL: "https://api.github.com",
 			headers: {
-				"Accept": "application/vnd.github.v3.raw",
+				"Accept": "application/vnd.github.v3+json",
 				"Authorization" : `token ${repoToken}`,
 			},
 		};

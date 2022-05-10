@@ -11,7 +11,8 @@ The environment variables for testing must reside in a file with the name **env.
 ``` json
 {
     "environment": "dev",
-    "repo-owner-and-name": "JohnDoe/MyRepo",
+    "repo-owner": "JohnDoe",
+    "repo-name": "MyRepo",
     "repo-token": "abcd1234",
 	"tag-name": "v1.2.3"
 }

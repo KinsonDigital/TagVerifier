@@ -3,12 +3,14 @@ import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
 import {Action} from "./helpers/action";
 import {TagData} from "./interfaces/tagData";
 
+/**
+ * Provides the ability to get tag data of a GitHub repository.
+ */
 export class TagAPI {
 	private action: Action;
 
 	/**
 	 * Creates a new instance of Environment.
-	 * @param environment {Environment} The current environment.
 	 */
 	constructor () {
 		this.action = new Action();

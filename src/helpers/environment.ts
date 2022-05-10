@@ -29,7 +29,8 @@ export class Environment {
 			// Set to environment value of production
 			this.inputs = {
 				environment: "production",
-				repoOwnerAndName: "",
+				repoOwner: "",
+				repoName: "",
 				tagName: "",
 				repoToken: "",
 			};

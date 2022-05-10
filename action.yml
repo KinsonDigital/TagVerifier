@@ -1,8 +1,11 @@
 name: 'SAMPLE-ACTION' #TODO: Set the name of the action
 description: 'Gets version information from a .csproj file.'
 inputs:
-  repo-owner-and-name:  # id of input
-    description: 'The repository owner and name separated by a forward slash.'
+  repo-owner:
+    description: 'The name of the owner of the repository.'
+    required: true
+  repo-name:
+    description: 'The name of the repository.'
     required: true
   tag-name: # The name of the tag
     description: 'The name of the tag to check.'

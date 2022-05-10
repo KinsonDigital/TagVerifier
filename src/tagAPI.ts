@@ -8,7 +8,13 @@ import {TagData} from "./interfaces/tagData";
  */
 export class TagAPI {
 	private action: Action;
+	
+	private readonly repoOwnerInputName: string = "repo-owner";
 
+	private readonly repoNameInputName: string = "repo-name";
+
+	private readonly repoTokenInputName: string = "repo-token";
+	
 	/**
 	 * Creates a new instance of Environment.
 	 */
@@ -22,8 +28,9 @@ export class TagAPI {
 	 * @returns True if the tag exists.
 	 */
 	public async tagExistsAsync (tagName: string): Promise<boolean> {
-		const repoOwnerAndName: string = this.action.getInput("repo-owner-and-name");
-		const repoToken: string = this.action.getInput("repo-token");
+		const repoOwner: string = this.action.getInput(this.repoOwnerInputName);
+		const repoName: string = this.action.getInput(this.repoNameInputName);
+		const repoToken: string = this.action.getInput(this.repoTokenInputName);
 
 		const config: AxiosRequestConfig = {
 			baseURL: "https://api.github.com",
@@ -33,7 +40,7 @@ export class TagAPI {
 			},
 		};
         
-		const url: string = `/repos/${repoOwnerAndName}/tags`;
+		const url: string = `/repos/${repoOwner}/${repoName}/tags`;
 		info(`URL used to download tag data from repository:\n\t${url}`);
 
 		try {
@@ -47,7 +54,7 @@ export class TagAPI {
 
 			// If this point is reached, then the tag does not exist
 			return await Promise.resolve(false);
-		} catch (error) {
+		} catch (error: any) {
 			/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 			const res: AxiosResponse = <AxiosResponse>error.response;
 

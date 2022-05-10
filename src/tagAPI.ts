@@ -31,8 +31,8 @@ export class TagAPI {
 			},
 		};
         
-		const url: string = `/repos/${repoOwnerAndName}/git/refs/tags`;
-		info("URL used to download file from repository:\n\t${url}");
+		const url: string = `/repos/${repoOwnerAndName}/tags`;
+		info(`URL used to download tag data from repository:\n\t${url}`);
 
 		try {
 			const response: AxiosResponse<TagData[]> = await axios.get<TagData[]>(url, config);

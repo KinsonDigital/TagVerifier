@@ -1,11 +1,9 @@
-import {tagObjData} from "./tagObj";
+import {commitData} from "./commitData";
 
 /**
- * Represents data for a single tab.
+ * Represents data for a single tag.
  */
 export interface TagData {
-	ref: string,
-	node_id: string,
-	url: string,
-	object: tagObjData
+	name: string,
+	commit: commitData,
 }

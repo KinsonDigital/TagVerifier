@@ -11,9 +11,14 @@ export interface ActionInputs {
 	environment: string,
 
 	/**
-     * The owner and name of the repository.
-     */
-	repoOwnerAndName: string,
+	 * The name of the owner of the repository.
+	 */
+	repoOwner: string,
+
+	/**
+	 * The name of the repository.
+	 */
+	repoName: string,
 
 	/**
      * The name of the tag.

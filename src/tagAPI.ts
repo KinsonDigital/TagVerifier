@@ -16,10 +16,10 @@ export class TagAPI {
 
 	/**
 	 * Checks to see if the given tag exists.
-	 * @param name {string} The name of the tag to check for.
+	 * @param tagName {string} The name of the tag to check for.
 	 * @returns True if the tag exists.
 	 */
-	public async tagExistsAsync (name: string): Promise<boolean> {
+	public async tagExistsAsync (tagName: string): Promise<boolean> {
 		const repoOwnerAndName: string = this.action.getInput("repo-owner-and-name");
 		const repoToken: string = this.action.getInput("repo-token");
 
@@ -38,7 +38,7 @@ export class TagAPI {
 			const response: AxiosResponse<TagData[]> = await axios.get<TagData[]>(url, config);
 
 			for (const tag of <TagData[]>response.data) {
-				if (tag.name.endsWith(name)) {
+				if (tag.name.endsWith(tagName)) {
 					return await Promise.resolve(true);
 				}
 			}

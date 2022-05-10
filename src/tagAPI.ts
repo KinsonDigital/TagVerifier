@@ -38,7 +38,7 @@ export class TagAPI {
 			const response: AxiosResponse<TagData[]> = await axios.get<TagData[]>(url, config);
 
 			for (const tag of <TagData[]>response.data) {
-				if (tag.ref.endsWith(name)) {
+				if (tag.name.endsWith(name)) {
 					return await Promise.resolve(true);
 				}
 			}
